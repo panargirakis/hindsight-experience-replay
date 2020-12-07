@@ -1,4 +1,4 @@
-# Hindsight Experience Replay (HER)
+# Hindsight Experience Replay (HER) - Dual Fetch Environment
 This is a pytorch implementation of [Hindsight Experience Replay](https://arxiv.org/abs/1707.01495). 
 
 ## Modifications for dual-environment support
