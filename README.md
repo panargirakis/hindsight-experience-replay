@@ -1,6 +1,15 @@
 # Hindsight Experience Replay (HER)
 This is a pytorch implementation of [Hindsight Experience Replay](https://arxiv.org/abs/1707.01495). 
 
+## Modifications for dual-environment support
+
+This code has been modified to train on two Fetch environments at the same time. We aimed to understand how well the model could generalize for two environments. Experiments were conducted on `FetchPickAndPlace-v1` and `FetchPush-v1` which found **the baseline DDPG + HER agent could learn both environments at the same time** and achieve success rates of 0.9 and 1.0 respectively for the two environments. These results are in line with the original OpenAI benchmark results presented at [Multi-Goal Reinforcement Learning: Challenging Robotics Environments and Request for Research](https://arxiv.org/pdf/1802.09464.pdf).
+
+In addition to the dual-agent support with the baseline DDPG + HER, the modifications added optional support for dual-critic (a seperate critic for each environment) and injecting an extra value into the observation to indicate which environment is being observed. Both of those improvements were hypothesized to improve performance, but only the dual-critic method improved performance by a marginal 3% when compared to the baseline agent.
+
+Weights and Biases Project for results: https://wandb.ai/pargyrakis/Input-Based%20DDPG%20+%20HER%20Dual%20Fetch%20Model?workspace=user-pargyrakis
+Co-authors of these modifications: @pargyrakis, @mahajanrevant
+
 ## Acknowledgement:
 - [Openai Baselines](https://github.com/openai/baselines)
 
