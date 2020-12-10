@@ -1,5 +1,5 @@
-# Hindsight Experience Replay (HER) - Dual Fetch Environment
-This is a pytorch implementation of [Hindsight Experience Replay](https://arxiv.org/abs/1707.01495). 
+# Multi-environment Reinforcement Learning Agent for Robotics Tasks
+This is is a modified implementation of DDPG + HER to **train a single actor for two robotics Fetch environments at the same time**. For details, see the [PDF report](https://github.com/panargirakis/hindsight-experience-replay/blob/master/Report%20-%20Multi-environment%20Reinforcement%20Learning%20Agent%20for%20Robotics%20Tasks.pdf).
 
 ## Modifications for dual-environment support
 
