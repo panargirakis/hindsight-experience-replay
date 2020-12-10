@@ -17,6 +17,7 @@ def get_args():
     parser.add_argument('--dual-critic', dest='dual_critic', action='store_true')
     parser.set_defaults(dual_critic=False)
 
+
     parser.add_argument('--n-epochs', type=int, default=50, help='the number of epochs to train the agent')
     parser.add_argument('--n-cycles', type=int, default=50, help='the times to collect samples per epoch')
     parser.add_argument('--n-batches', type=int, default=40, help='the times to update the network')
@@ -26,6 +27,7 @@ def get_args():
     parser.add_argument('--replay-strategy', type=str, default='future', help='the HER strategy')
     parser.add_argument('--clip-return', type=float, default=50, help='if clip the returns')
     parser.add_argument('--save-dir', type=str, default='saved_models/', help='the path to save the models')
+    parser.add_argument('--save-name', type=str, default='model.pt', help='the name to save the model with')
     parser.add_argument('--noise-eps', type=float, default=0.2, help='noise eps')
     parser.add_argument('--random-eps', type=float, default=0.3, help='random eps')
     parser.add_argument('--buffer-size', type=int, default=int(1e6), help='the size of the buffer')

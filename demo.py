@@ -19,7 +19,7 @@ def process_inputs(o, g, o_mean, o_std, g_mean, g_std, args):
 
 def demo_2_envs(env, args, env_id):
     # load the model param
-    model_path = args.save_dir + args.env1_name + args.env2_name + '/model.pt'
+    model_path = args.save_dir + args.env1_name + args.env2_name + '/' + args.save_name
     o_mean, o_std, g_mean, g_std, model = torch.load(model_path, map_location=lambda storage, loc: storage)
 
     # get the env param
@@ -30,10 +30,21 @@ def demo_2_envs(env, args, env_id):
                   'action': env.action_space.shape[0],
                   'action_max': env.action_space.high[0],
                   }
-    # create the actor network
-    actor_network = actor(env_params)
-    actor_network.load_state_dict(model)
-    actor_network.eval()
+
+    try:
+        # create the actor network
+        actor_network = actor(env_params)
+        actor_network.load_state_dict(model)
+        actor_network.eval()
+    except Exception as e:
+        args.dont_inject_observation = not args.dont_inject_observation
+        # get the environment params
+        env_params['obs'] = ddpg_agent.inject_obs(observation['observation'], env_id, args).shape[0]
+        # create the actor network
+        actor_network = actor(env_params)
+        actor_network.load_state_dict(model)
+        actor_network.eval()
+
     for i in range(args.demo_length):
         observation = env.reset()
         # start to do the demo
